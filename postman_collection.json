@@ -1,0 +1,13 @@
+{
+  "info": {"name": "DevTest Lab API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description": "Fictional read-only training API. Set baseUrl to your local or Render URL."},
+  "variable": [{"key": "baseUrl", "value": "http://localhost:8000"}],
+  "item": [
+    {"name": "Customer - success", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/customers/1"}},
+    {"name": "Customer - missing email scenario", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/customers/1?scenario=missing_email"}},
+    {"name": "Order", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/orders/101"}},
+    {"name": "Payment", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/payments/101"}},
+    {"name": "System health", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/systems/web-01/health"}},
+    {"name": "System high memory", "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/systems/web-01/health?scenario=high_memory"}},
+    {"name": "Service health", "request": {"method": "GET", "url": "{{baseUrl}}/health"}}
+  ]
+}

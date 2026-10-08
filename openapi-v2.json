@@ -1,0 +1,19 @@
+{
+  "swagger": "2.0",
+  "info": {"title": "DevTest Lab API", "version": "1.0.0", "description": "Fictional read-only educational API."},
+  "schemes": ["https"],
+  "produces": ["application/json"],
+  "paths": {
+    "/health": {"get": {"summary": "Check API availability", "responses": {"200": {"description": "Healthy"}}}},
+    "/api/v1/customers/{customer_id}": {"get": {"parameters": [{"name": "customer_id", "in": "path", "required": true, "type": "integer"}, {"name": "scenario", "in": "query", "required": false, "type": "string"}], "responses": {"200": {"description": "Customer", "schema": {"$ref": "#/definitions/Customer"}}, "404": {"description": "Not found"}, "422": {"description": "Validation error"}}}},
+    "/api/v1/orders/{order_id}": {"get": {"parameters": [{"name": "order_id", "in": "path", "required": true, "type": "integer"}], "responses": {"200": {"description": "Order", "schema": {"$ref": "#/definitions/Order"}}, "404": {"description": "Not found"}}}},
+    "/api/v1/payments/{payment_id}": {"get": {"parameters": [{"name": "payment_id", "in": "path", "required": true, "type": "integer"}], "responses": {"200": {"description": "Payment", "schema": {"$ref": "#/definitions/Payment"}}, "404": {"description": "Not found"}}}},
+    "/api/v1/systems/{system_id}/health": {"get": {"parameters": [{"name": "system_id", "in": "path", "required": true, "type": "string"}], "responses": {"200": {"description": "System health", "schema": {"$ref": "#/definitions/SystemHealth"}}, "404": {"description": "Not found"}}}}
+  },
+  "definitions": {
+    "Customer": {"type": "object", "required": ["id", "name", "email", "status", "membership"], "properties": {"id": {"type": "integer"}, "name": {"type": "string"}, "email": {"type": "string"}, "status": {"type": "string"}, "membership": {"type": "string"}}},
+    "Order": {"type": "object", "properties": {"order_id": {"type": "integer"}, "customer_id": {"type": "integer"}, "items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "number"}, "currency": {"type": "string"}, "status": {"type": "string"}}},
+    "Payment": {"type": "object", "properties": {"payment_id": {"type": "integer"}, "order_id": {"type": "integer"}, "amount": {"type": "number"}, "currency": {"type": "string"}, "status": {"type": "string"}, "transaction_reference": {"type": "string"}}},
+    "SystemHealth": {"type": "object", "properties": {"system_id": {"type": "string"}, "cpu_percent": {"type": "integer"}, "memory_percent": {"type": "integer"}, "disk_percent": {"type": "integer"}, "service_status": {"type": "string"}, "health": {"type": "string"}, "data_source": {"type": "string"}}}
+  }
+}
